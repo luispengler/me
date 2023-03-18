@@ -117,7 +117,7 @@ Previously we displayed the number five, which is the zeroth image of the MNIST 
 
 ```python {linenos=true}
 import matplotlib.pyplot as plt
-plt.imshow(X_train[0], cmap='gray'
+plt.imshow(X_train[0], cmap='gray')
 ```
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0].png?raw=true)
 
@@ -332,6 +332,370 @@ WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet 
 #### Short explanation
 Next, we will build a training loop for our GAN.
 
+The following command only the `X_train` dataset from MNIST dataset. You can see all the 60k images in the format of 28x28 are there.
+```python {linenos=true}
+(X_train, _), (_, _) = mnist.load_data()
+X_train.shape
+```
+{{< highlight plaintext >}}
+(60000, 28, 28)
+{{< /highlight >}}
+
+However, they are still in the 0 to 255 range we saw earlier.
+```python {linenos=true}
+print(X_train[0])
+```
+{{< highlight plaintext >}}
+[[  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   3  18  18  18 126 136
+  175  26 166 255 247 127   0   0   0   0]
+ [  0   0   0   0   0   0   0   0  30  36  94 154 170 253 253 253 253 253
+  225 172 253 242 195  64   0   0   0   0]
+ [  0   0   0   0   0   0   0  49 238 253 253 253 253 253 253 253 253 251
+   93  82  82  56  39   0   0   0   0   0]
+ [  0   0   0   0   0   0   0  18 219 253 253 253 253 253 198 182 247 241
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0  80 156 107 253 253 205  11   0  43 154
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0  14   1 154 253  90   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0 139 253 190   2   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0  11 190 253  70   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0  35 241 225 160 108   1
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0  81 240 253 253 119
+   25   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0  45 186 253 253
+  150  27   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0  16  93 252
+  253 187   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0 249
+  253 249  64   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0  46 130 183 253
+  253 207   2   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0  39 148 229 253 253 253
+  250 182   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0  24 114 221 253 253 253 253 201
+   78   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0  23  66 213 253 253 253 253 198  81   2
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0  18 171 219 253 253 253 253 195  80   9   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0  55 172 226 253 253 253 253 244 133  11   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0 136 253 253 253 212 135 132  16   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]
+ [  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+    0   0   0   0   0   0   0   0   0   0]]
+{{< /highlight >}}
+
+The issue is that the real images are very distinguishable from the fake ones, since we used `tanh` activation function in the Generator code. Therefore the generator is working with images that go from -1 to 1. The fake images are in this -1 to 1 range, while the real ones are in 0 to 255. Very easy to spot their differences like this. Let us fix this by setting the range of values of the real images to *also* be in -1 to 1.
+
+```python {linenos=True}
+X_train = X_train / 127.5 - 1.0
+X_train = np.expand_dims(X_train, axis=3)
+```
+Now we print another 5 from the real dataset to check if they are correct...
+```python {linenos=true}
+print(X_train[0])
+```
+{{< highlight plaintext >}}
+[[[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-0.97647059]
+  [-0.85882353]
+  [-0.85882353]
+  [-0.85882353]
+  [-0.01176471]
+  [ 0.06666667]
+  [ 0.37254902]
+  [-0.79607843]
+  [ 0.30196078]
+  [ 1.        ]
+  [ 0.9372549 ]
+  [-0.00392157]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-0.76470588]
+  [-0.71764706]
+  [-0.2627451 ]
+  [ 0.20784314]
+  [ 0.33333333]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.76470588]
+  [ 0.34901961]
+  [ 0.98431373]
+  [ 0.89803922]
+  [ 0.52941176]
+  [-0.49803922]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-0.61568627]
+  [ 0.86666667]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.98431373]
+  [ 0.96862745]
+  [-0.27058824]
+  [-0.35686275]
+  [-0.35686275]
+  [-0.56078431]
+  [-0.69411765]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]
+
+  [[...19 OTHERS...]]  
+ [[-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]
+  [-1.        ]]]
+{{< /highlight >}}
+
+Woosh, that was big. I even had to truncate 19 of these so it wouldn't bother you too much. However, notice in the ones that remained how they were never less than -1 or greater than 1. It doesn't look like a five because we lost the spaces when printing it out, but what matters is the numbers and that this image is still 28x28. I removed 19 units from the rows and columns, but if you count the ones that remained (that is 9 units), you realize that they total 28 (19+9). In fact, if I try to render this -1 to 1 image again, you will see it is still a five!
+
+```python {linenos=true}
+import matplotlib.pyplot as plt
+plt.imshow(X_train[0], cmap='gray')
+```
+![A reranged 5](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0]_ranged.png?raw=true)
+
+Next with `real = np.ones...` and `fake = np.zeros` we are creating a 1-dimensional numpy array that will be our labels for real and fake images. As the code suggest, we are encoding real as 1 and fake as 0.
+
+#### Training for loop
+Our training for loop is very important. It defines the steps that will be followed during training.
+
+First, we are training the discriminator. We get a random batch of real images. Then we get a random batch of fake images produced by our generator. Now the last step in the discriminator training is to make predictions of what classes those two batches belong to, and give it the right answer so it can calculate how much off the predictions are and update its weights.
+
+For the generator training, we ask it to create fake images that we will label as real, and see what the discriminator will think about this lying act of ours. Lastly, we hold the discriminator weights still and update the generator's.
+
+The last step in the Training code is not necessary for training the GANs, but it will be useful for our understanding of them. We will save their progress for later plotting in a graph. We will also take "snapshots" of what the generator is producing so we can see how well it can handwrite...
 
 #### Code
 ```python {linenos=True}
@@ -428,6 +792,73 @@ def sample_images(generator, image_grid_rows=4, image_grid_columns=4):
             cnt += 1
 ```
 
+
+### Actually training + Inspecting Output
+#### Short explanation
+We covered pretty much every part of the code. Now we are just defining the hyperparameters. While machine learning models are usually very sensible to hyperparameters, our GAN model is simple and therefore is less sensible to have bad hyperparameters. Of course, your images will become pretty bad if you set bad hyperparameters, but it is not the end of the world. The number of `iterations` defines how many times we will go through the training loop we just saw a code block ago. It took me one hour to run it on colab, it might take you a different time running somewhere else. An ideal iteration number for this GAN would be 100,000. However, I don't want to wait 5h just to get images for a practice tutorial... Maybe you don't want to wait that much time to learn the content either.
+
+Batch size will tell our training loop how much images to get for the Discriminator to predict at. And lastly `sample_interval` defines after how many iterations to print us a 4x4 grid with the progress of the Generator network.
+
+Also, if you get a warning running this part of the code as `Discrepancy between trainable weights and collected trainable`, it is just Keras complaining we held the Discriminator's parameters constant while training the Generator.
+
+The last two blocks of code are simply the ones that will use matplotlib to output us the 4x4 grid every `sample_interval`
+
+#### Code
+```python {linenos=true}
+# Set hyperparameters
+iterations = 20000 # It takes 1h to run because of this high amount of interations
+batch_size = 128
+sample_interval = 1000
+
+# Train the GAN for the specified number of iterations
+train(iterations, batch_size, sample_interval
+```
+{{< highlight plaintext >}}
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+11490434/11490434 [==============================] - 0s 0us/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 6ms/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 4ms/step
+4/4 [==============================] - 0s 5ms/step
+4/4 [==============================] - 0s 3ms/step
+4/4 [==============================] - 0s 3ms/step
+... ALSO TRUNCATED HERE SO IT DOESN'T TAKE MUCH SPACE...
+{{< /highlight >}}
+
+```python {linenos=true}
+losses = np.array(losses)
+
+# Plot training losses for Discriminator and Generator
+plt.figure(figsize=(15, 5))
+plt.plot(iteration_checkpoints, losses.T[0], label="Discriminator loss")
+plt.plot(iteration_checkpoints, losses.T[1], label="Generator loss")
+
+plt.xticks(iteration_checkpoints, rotation=90)
+
+plt.title("Training Loss")
+plt.xlabel("Iteration")
+plt.ylabel("Loss")
+plt.legend()
+```
+```python {linenos=true}
+accuracies = np.array(accuracies)
+
+# Plot Discriminator accuracy
+plt.figure(figsize=(15, 5))
+plt.plot(iteration_checkpoints, accuracies, label="Discriminator accuracy")
+
+plt.xticks(iteration_checkpoints, rotation=90)
+plt.yticks(range(0, 100, 5))
+
+plt.title("Discriminator Accuracy")
+plt.xlabel("Iteration")
+plt.ylabel("Accuracy (%)")
+plt.legend()
+```
 
 ## Full Code
 In case you already understand the whole code structure, feel free to just run the code provided below.
