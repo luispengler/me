@@ -9,7 +9,7 @@ In this blog post I will walk you through creating your first GAN for MNIST data
 
 If you are new to the MNIST dataset, I can sum it up saying it is a dataset containing 70k handwritten numbers ranging from 0 to 9, as seen in the picture below.
 
-![MNIST Dataset](/blog/example-mnist.jpg)
+![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/example-mnist.jpg?raw=true)
 
 ## Hands-on!
 ### Imports
