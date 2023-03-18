@@ -77,12 +77,86 @@ X_train[0].shape
 
 Then plotting it so we see it.
 
-```python {lineos=true}
+```python {linenos=true}
 import matplotlib.pyplot as plt
 plt.imshow(X_train[0], cmap='gray'
 ```
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0].png?raw=true)
 
+Now that you understood we are working with 28x28 images, time to define the output dimensions to our generator/input dimensions to our discriminator. That is saying they will be working with 28x28 images. 
+
+Notice we are also defining channels below. It is equal to one because we want to work with only one channel of color. If we wanted RGB (Red, Green, Blue), we would define channels equal to 3.
+```python {linenos=true}
+## Model input dimensions
+img_rows = 28
+img_cols = 28
+channels = 1
+
+# Input image dimensions
+img_shape = (img_rows, img_cols, channels)
+```
+Here we will also define the size of the random noise source we will be using. It can also be called noise vector as you see in the comment below.
+```python {linenos=true}
+# Size of the noise vector, used as input to the Generator
+z_dim = 100
+```
+
+Now let's build the generator. In the Fully connect layer part, it takes in the noise vector of size 100 we defined earlier, and connects it to 128 nodes in our first neural network layer. Then it gets connected to our first and only hidden layer, which is using a Leaky ReLU activation function. 
+
+An activation function is a function that will put our values in a defined range. The Leaky ReLU doesn't limit positive numbers, meaning if we put in 16 as a number it wouldn't do anything to it and would still print out 16. However for negative numbers it would make than bigger (that is approaching to zero), in an order of 100 times. The following image may better clarify what Leaky ReLU does, but if you still didn't understand it, just think of it as one more layer to our neural network.
+
+![Leaky ReLU image](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/leaky-relu.png?raw=true)
+
+```python {linenos=true}
+from keras.models import Sequential
+from keras.layers import Dense, Flatten, Reshape
+from keras.layers import LeakyReLU
+
+def build_generator(img_shape, z_dim):
+
+    model = Sequential()
+
+    # Fully connected layer
+    model.add(Dense(128, input_dim=z_dim))
+
+    # Leaky ReLU activation
+    model.add(LeakyReLU(alpha=0.01))
+
+    # Output layer with tanh activation
+    model.add(Dense(28 * 28 * 1, activation='tanh'))
+
+    # Reshape the Generator output to image dimensions
+    model.add(Reshape(img_shape))
+
+    return model, model.summary()
+    
+```
+
+```python {linenos=true}
+build_generator((28, 28, 1), 100)
+```
+
+{{< highlight plaintext >}}
+Model: "sequential_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ dense (Dense)               (None, 128)               12928     
+                                                                 
+ leaky_re_lu (LeakyReLU)     (None, 128)               0         
+                                                                 
+ dense_1 (Dense)             (None, 784)               101136    
+                                                                 
+ reshape (Reshape)           (None, 28, 28, 1)         0         
+                                                                 
+=================================================================
+Total params: 114,064
+Trainable params: 114,064
+Non-trainable params: 0
+_________________________________________________________________
+
+(<keras.engine.sequential.Sequential at 0x7f717cff1d90>, None)
+{{< /highlight >}}
 
 ## Full Code
 In case you already understand the whole code structure, feel free to just run the code provided below.
