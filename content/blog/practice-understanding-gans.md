@@ -24,11 +24,11 @@ The Discriminator's goal is to be able to tell if a given input is deemed real r
 
 The Generator's goal is to create images that will fool the Discriminator by the latter saying the image has a high probability of being real.
 
-In the training process, we only update the weights and biases of one of the models. If we are training the Discriminator, we will not touch on the settings of our Generator network. The same is valid for the Generator. In more details that's the training process:
+In the training process, we only update the weights of one of the models. If we are training the Discriminator, we will not touch on the settings of our Generator network. The same is valid for the Generator. In more details that's the training process:
 
-The Discriminator takes examples of images from a real dataset (X), and from a fake dataset (X*) that we are generating. Then it computes how much it has mistaken the classifications and updates its weights and biases to minimize what we call loss. Here, the Generator remains still.
+The Discriminator takes examples of images from a real dataset (X), and from a fake dataset (X*) that we are generating. Then it computes how much it has mistaken the classifications and updates its weights to minimize what we call loss. Here, the Generator remains still.
 
-The Generator takes input from a random noise source (z), and it produces a fake image as output (X*). Then it computes how much the Discriminator has mistaken the classification of the fake images, and updates its weights and biases to maximize the loss. Here, the Discriminator remains still.
+The Generator takes input from a random noise source (z), and it produces a fake image as output (X*). Then it computes how much the Discriminator has mistaken the classification of the fake images, and updates its weights to maximize the loss. Here, the Discriminator remains still.
 
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan-layout.png?raw=true)
 Above you can see the GAN structure we will be creating, which is the summary of what I just described. It is a very general GAN model, but it will be sufficient for generating an understanding of this kind of machine learning framework.
@@ -184,7 +184,7 @@ print(X_train[0])
     0   0   0   0   0   0   0   0   0   0]]
 {{< /highlight >}}
 
-We can almost see the number five being formed by the numbers that were not zero... These numbers are in grayscale (0 to 255 range), and when used `cmap='gray'` in matplotlib, it will show a black and white image like the one we got before. Now you understand that changing the range of the pixel values, changes the range of the numbers that make up an image (tanh would transform 0 to 255, to -1 to 1).
+We can almost see the number five being formed by the numbers that were not zero... These numbers are in grayscale (0 to 255 range), and when used `cmap='gray'` in matplotlib, it will show a black and white image like the one we got before. Now you understand that changing the range of the pixel values, changes the range of the numbers that make up an image (tanh would transform 0 to 255, to -1 to 1). We will see more of this in the [training subsection](#training).
 
 Now the real-last layer (`Reshape`) of our neural network simply reshapes the images which are in 784 by 1 to our normal size images: 28 by 28. That is, before getting into this last layer, we had some sort of array in the dimensions 784x1. Watch out for the difference:
 
@@ -240,7 +240,7 @@ def build_generator(img_shape, z_dim):
 
 You may notice the Discriminator and the Generator are very similar networks, however in most GANs implementations they often very greatly in both size and complexity. 
 
-The first layer ()`Flatten`) takes in the images in the format of 28x28 and reshapes them to 784x1. Now you might ask me why we went through the small hassle of adding another layer in our GAN model for reshaping since our work would be "undone" when it got to the input of the discriminator. The reason we reshaped the output of the Generator network was for its images to blend in with the real images which are already in the 28x28 format, regardless of the Discriminator network taking in 784x1 images as input.
+The first layer (`Flatten`) takes in the images in the format of 28x28 and reshapes them to 784x1. Now you might ask me why we went through the small hassle of adding another layer in our GAN model for reshaping since our work would be "undone" when it got to the input of the discriminator. The reason we reshaped the output of the Generator network was for its images to blend in with the real images which are already in the 28x28 format, regardless of the Discriminator network taking in 784x1 images as input.
 
 Then, the reshaped images will go into a `Fully connected layer` of 128 units. Then it gets connected to our first and only hidden layer that uses a `Leaky ReLU` activation function. This part is identical to the Generator network.
 
@@ -276,13 +276,13 @@ The Discriminator is compiled alone, taking as input `img_shape` (which we defin
 
 Therefore, binary cross-entropy is going to tell us how off the prediction of the Discriminator is. Remember the Discriminator's goal is to not be off in the predictions, while the Generator wants the Discriminator to be very off when it comes to fake images predictions. This also means the Discriminator wants to minimize its loss for real and fake images, and the Generator wants to maximize the Discriminator loss for fake images.
 
-The `optimizer` argument is required for compiling the model, although I don't know how the `Adam()` optimizer works, it has became the default in many GAN implementations due to its often superior performance. However, it suffices to say the optimizer is the one who is responsible for updating the weights and learning rates of the neural network. 
+The `optimizer` argument is required for compiling the model, although I don't know how the `Adam()` optimizer works, it has become the default in many GAN implementations due to its often superior performance. However, it suffices to say the optimizer is the one who is responsible for updating the weights and learning rates of the neural network. 
 
-The `'accuracy'` metrics is the way the Discriminator, and later us, will know how well the Discriminator is doing. 
+The `'accuracy'` metrics is the way the Discriminator, and later us, will know how well it is doing. 
 
 The Generator is built taking as input `img_shape` and the `z_dim` arguments we defined earlier. Then, we only compile the Generator together with the Discriminator in the `gan` argument. For doing this, we first neet to set `discriminator.trainable` to `false`. 
 
-To clarify what I just stated, notice how we *built* and *compiled* the Discriminator alone. This means that when we use the Discriminator and train it, it will take care of its own weights without interfering with the Generator network. Since it is alone, it can't interfere with anyone else. In turn, the generator is *built* alone, but it is *compiled* only when it is together with the Discriminator. It is only possible to train the Generator without tweaking the Discriminator weights by mistake if we set `discriminator.trainable` to false.
+To clarify what I just stated, notice how below we *built* and *compiled* the Discriminator alone. This means that when we use the Discriminator and train it, it will take care of its own weights without interfering with the Generator network. Since it is alone, it can't interfere with anyone else. In turn, the generator is *built* alone, but it is *compiled* only when it is together with the Discriminator. It is only possible to train the Generator without tweaking the Discriminator weights by mistake if we set `discriminator.trainable` to false.
 
 Lastly, we save a file called `generator_model.h5` containing the Generator network model. After trained, we can even use this file in other projects with the same abilities our generative model will have.
 
@@ -332,7 +332,7 @@ WARNING:tensorflow:Compiled the loaded model, but the compiled metrics have yet 
 #### Short explanation
 Next, we will build a training loop for our GAN.
 
-The following command only the `X_train` dataset from MNIST dataset. You can see all the 60k images in the format of 28x28 are there.
+The following command only gives us the `X_train` dataset from MNIST dataset. You can see that all the 60k images in the format of 28x28 are there.
 ```python {linenos=true}
 (X_train, _), (_, _) = mnist.load_data()
 X_train.shape
@@ -686,7 +686,7 @@ plt.imshow(X_train[0], cmap='gray')
 ```
 ![A reranged 5](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0]_ranged.png?raw=true)
 
-Next with `real = np.ones...` and `fake = np.zeros` we are creating a 1-dimensional numpy array that will be our labels for real and fake images. As the code suggest, we are encoding real as 1 and fake as 0.
+Next with `real = np.ones...` and `fake = np.zeros...` we are creating a 1-dimensional numpy array that will be our labels for real and fake images. As the code suggest, we are encoding real as 1 and fake as 0.
 
 #### Training for loop
 Our training for loop is very important. It defines the steps that will be followed during training.
@@ -968,7 +968,7 @@ def build_discriminator(img_shape):
 {{< /highlight >}}
 
 
-### Build the Model
+### Building the Model
 {{< highlight python >}}
 def build_gan(generator, discriminator):
 
@@ -1097,7 +1097,7 @@ def sample_images(generator, image_grid_rows=4, image_grid_columns=4):
 
 {{< /highlight >}}
 
-### Train the GAN and Inspect Output
+### Actually training + Inspecting Output
 Note that the `'Discrepancy between trainable weights and collected trainable'` warning from Keras is expected. It is by design: The Generator's trainable parameters are intentionally held constant during Discriminator training, and vice versa.
 
 {{< highlight python >}}
