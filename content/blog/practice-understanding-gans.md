@@ -2,6 +2,7 @@
 title: "Practice: Understanding GANs"
 date: 2023-03-15T23:38:34-04:00
 draft: false
+showToc: true
 ---
 ## Introduction
 
@@ -9,9 +10,85 @@ In this blog post I will walk you through creating your first GAN for MNIST data
 
 If you are new to the MNIST dataset, I can sum it up saying it is a dataset containing 70k handwritten numbers ranging from 0 to 9, as seen in the picture below.
 
-![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/example-mnist.jpg?raw=true)
+![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/example-mnist.jpg?raw=true)
+
+Our GAN model will be used for creating images that ressamble those from the MNIST dataset. Which in turn means that by the end of this practice we will have created a GAN that can write down some numbers :)
+
+## Explaining the model
+
+Before going through the code it is important we understand better what we will be creating.
+
+As you may know GANs are composed by two neural networks: Generator and Discriminator.
+
+The Discriminator's goal is to be able to tell if a given input is deemed fake rather than real, providing a probability of the input being either real or fake.
+
+The Generator's goal is to create images that will fool the Discriminator by the latter saying the image has a high probability of being real.
+
+In the training process, we only update the weights and biases of one of the models. If we are training the Discriminator, we will not touch on the settings of our Generator network. The same is valid for the Generator. In more details that's the training process:
+
+The Discriminator takes examples of images from a real dataset (X), and from a fake dataset (X*) that we are generating. Then it computes how much it has mistaken the classifications and updates its weights and biases to minimize what we call loss. Here, the Generator remains still.
+
+The Generator takes input from a random noise source (z), and it produces a fake image as output (X*). Then it computes how much the Discriminator has mistaken the classification of the fake images, and updates its weights and biases to maximize the loss. Here, the Discriminator remains still.
+
+![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan-layout.png?raw=true)
+Above you can see the GAN structure we will be creating, which is the summary of what I just described. It is a very general GAN model, but it will be sufficient for generating an understanding of this kind of machine learning framework.
 
 ## Hands-on!
+In this session I will be breaking down some parts of the code that are generally confusing, but if you are ready you can have the full code, without unnecessary parts, in the [next session](#full-code).
+
+### The MNIST dataset images
+Let's first get an understanding of the MNIST dataset images.
+
+```python {linenos=true}
+from keras.datasets import mnist
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+```
+
+{{< highlight plaintext >}}
+Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-datasets/mnist.npz
+11490434/11490434 [==============================] - 0s 0us/step
+{{< /highlight >}}
+
+We have a very nicely structured numpy array as our training dataset.
+
+```python {linenos=true}
+type(X_train)
+```
+{{< highlight plaintext >}}
+numpy.ndarray
+{{< /highlight >}}
+
+Having a look into the dimensions. Below 60000 means the amount of images we have. In the case of X_train we have 60k images. 28, 28 correspond to the height and width (AKA dimensions) of each one of these 60k images.
+
+```python {linenos=true}
+X_train.shape
+```
+{{< highlight plaintext >}}
+(60000, 28, 28)
+{{< /highlight >}}
+
+We can even confirm this by getting the dimensions of one image.
+```python {linenos=true}
+X_train[0].shape
+```
+{{< highlight plaintext >}}
+(28, 28)
+{{< /highlight >}}
+
+Then plotting it so we see it.
+
+```python {lineos=true}
+import matplotlib.pyplot as plt
+plt.imshow(X_train[0], cmap='gray'
+```
+![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0].png?raw=true)
+
+
+## Full Code
+In case you already understand the whole code structure, feel free to just run the code provided below.
+
+The code is also available here as a jupyter notebook.
+
 ### Imports
 
 {{< highlight python >}}
