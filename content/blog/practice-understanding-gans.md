@@ -887,7 +887,7 @@ plt.legend()
 ## Full Code
 In case you already understand the whole code structure, feel free to just run the code provided below.
 
-The code is also available here as a jupyter notebook.
+The code is also available [here](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/GAN.ipynb) as a jupyter notebook.
 
 ### Imports
 
