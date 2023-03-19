@@ -828,6 +828,27 @@ Downloading data from https://storage.googleapis.com/tensorflow/tf-keras-dataset
 4/4 [==============================] - 0s 3ms/step
 ... ALSO TRUNCATED HERE SO IT DOESN'T TAKE MUCH SPACE...
 {{< /highlight >}}
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_1.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_2.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_3.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_4.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_5.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_6.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_7.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_8.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_9.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_10.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_11.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_12.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_13.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_14.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_15.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_16.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_17.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_18.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_19.png?raw=true)
+![GAN generated digit](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan_20.png?raw=true)
+
 
 ```python {linenos=true}
 losses = np.array(losses)
@@ -844,6 +865,8 @@ plt.xlabel("Iteration")
 plt.ylabel("Loss")
 plt.legend()
 ```
+![Training loss graph](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/training_loss.png?raw=true)
+
 ```python {linenos=true}
 accuracies = np.array(accuracies)
 
@@ -859,6 +882,7 @@ plt.xlabel("Iteration")
 plt.ylabel("Accuracy (%)")
 plt.legend()
 ```
+![Discriminator accuracy graph](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/discriminator_accuracy.png?raw=true)
 
 ## Full Code
 In case you already understand the whole code structure, feel free to just run the code provided below.

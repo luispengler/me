@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://luispengler.github.io/me/books/</loc>
+    <lastmod>2023-03-15T23:43:29-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/blog/</loc>
+    <lastmod>2023-03-15T23:38:34-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/books/2022/</loc>
+    <lastmod>2023-03-15T23:43:29-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/tags/books/</loc>
+    <lastmod>2023-03-15T23:43:29-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/</loc>
+    <lastmod>2023-03-15T23:43:29-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/tags/</loc>
+    <lastmod>2023-03-15T23:43:29-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/blog/practice-understanding-gans/</loc>
+    <lastmod>2023-03-15T23:38:34-04:00</lastmod>
+  </url><url>
+    <loc>https://luispengler.github.io/me/categories/</loc>
+  </url>
+</urlset>
