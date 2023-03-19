@@ -882,7 +882,7 @@ plt.xlabel("Iteration")
 plt.ylabel("Accuracy (%)")
 plt.legend()
 ```
-![Discriminator accuracy graph](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/discriminator_accuracy.png?raw=true)
+![Discriminator accuracy graph](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/disciminator_accuracy.png?raw=true)
 
 ## Full Code
 In case you already understand the whole code structure, feel free to just run the code provided below.
@@ -1112,46 +1112,6 @@ sample_interval = 1000
 train(iterations, batch_size, sample_interval)
 
 ```
-
-{{< highlight plaintext "linenos=false">}}
-Streaming output truncated to the last 5000 lines.
-4/4 [==============================] - 0s 5ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 4ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 6ms/step
-4/4 [==============================] - 0s 4ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 4ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 4ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 2ms/step
-4/4 [==============================] - 0s 3ms/step
-4/4 [==============================] - 0s 4ms/step
-
-{{< /highlight >}}
 
 ```python {linenos=true}
 losses = np.array(losses)
