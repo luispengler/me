@@ -867,7 +867,7 @@ The code is also available here as a jupyter notebook.
 
 ### Imports
 
-{{< highlight python >}}
+```python {linenos=true}
 # Import statements
 %matplotlib inline
 
@@ -880,10 +880,10 @@ from keras.layers import LeakyReLU
 from keras.models import Sequential
 from keras.optimizers import Adam
 
-{{< /highlight >}}
+```
 
 
-{{< highlight python >}}
+```python {linenos=true}
 ### Model input dimensions
 img_rows = 28
 img_cols = 28
@@ -894,11 +894,11 @@ img_shape = (img_rows, img_cols, channels)
 
 # Size of the noise vector, used as input to the Generator
 z_dim = 100
-{{< /highlight >}}
+```
 
 ### Generator
 
-{{< highlight python >}}
+```python {linenos=true}
 def build_generator(img_shape, z_dim):
 
     model = Sequential()
@@ -917,36 +917,11 @@ def build_generator(img_shape, z_dim):
 
     return model
 
-{{< /highlight >}}
-
-{{< highlight python >}}
-build_generator((28, 28, 1), 100)
-
-{{< /highlight >}}
-
-{{< highlight plaintext "linenos=false">}}
-Model: "sequential_2"
-_________________________________________________________________
- Layer (type)                Output Shape              Param #   
-=================================================================
- dense_4 (Dense)             (None, 128)               12928     
-                                                                 
- leaky_re_lu_2 (LeakyReLU)   (None, 128)               0         
-                                                                 
- dense_5 (Dense)             (None, 784)               101136    
-                                                                 
- reshape_2 (Reshape)         (None, 28, 28, 1)         0         
-                                                                 
-=================================================================
-Total params: 114,064
-Trainable params: 114,064
-Non-trainable params: 0
-_________________________________________________________________
-
-{{< /highlight >}}
+```
 
 ### Discriminator
-{{< highlight python >}}
+
+```python {linenos=true}
 def build_discriminator(img_shape):
 
     model = Sequential()
@@ -965,11 +940,12 @@ def build_discriminator(img_shape):
 
     return model
 
-{{< /highlight >}}
+```
 
 
 ### Building the Model
-{{< highlight python >}}
+
+```python {linenos=true}
 def build_gan(generator, discriminator):
 
     model = Sequential()
@@ -980,9 +956,9 @@ def build_gan(generator, discriminator):
 
     return model
 
-{{< /highlight >}}
+```
 
-{{< highlight python >}}
+```python {linenos=true}
 # Build and compile the Discriminator
 discriminator = build_discriminator(img_shape)
 discriminator.compile(loss='binary_crossentropy',
@@ -998,10 +974,12 @@ discriminator.trainable = False
 # Build and compile GAN model with fixed Discriminator to train the Generator
 gan = build_gan(generator, discriminator)
 gan.compile(loss='binary_crossentropy', optimizer=Adam())
-{{< /highlight >}}
+
+generator.save('generator_model.h5')
+```
 
 ### Training
-{{< highlight python >}}
+```python {linenos=true}
 losses = []
 accuracies = []
 iteration_checkpoints = []
@@ -1066,9 +1044,9 @@ def train(iterations, batch_size, sample_interval):
             # Output a sample of generated image
             sample_images(generator)
 
-{{< /highlight >}}
+```
 
-{{< highlight python >}}
+```python {linenos=true}
 def sample_images(generator, image_grid_rows=4, image_grid_columns=4):
 
     # Sample random noise
@@ -1095,12 +1073,12 @@ def sample_images(generator, image_grid_rows=4, image_grid_columns=4):
             axs[i, j].axis('off')
             cnt += 1
 
-{{< /highlight >}}
+```
 
 ### Actually training + Inspecting Output
 Note that the `'Discrepancy between trainable weights and collected trainable'` warning from Keras is expected. It is by design: The Generator's trainable parameters are intentionally held constant during Discriminator training, and vice versa.
 
-{{< highlight python >}}
+```python {linenos=true}
 # Set hyperparameters
 iterations = 20000 # It takes 1h to run because of this high amount of interations
 batch_size = 128
@@ -1109,7 +1087,7 @@ sample_interval = 1000
 # Train the GAN for the specified number of iterations
 train(iterations, batch_size, sample_interval)
 
-{{< /highlight >}}
+```
 
 {{< highlight plaintext "linenos=false">}}
 Streaming output truncated to the last 5000 lines.
@@ -1151,7 +1129,7 @@ Streaming output truncated to the last 5000 lines.
 
 {{< /highlight >}}
 
-{{< highlight python >}}
+```python {linenos=true}
 losses = np.array(losses)
 
 # Plot training losses for Discriminator and Generator
@@ -1166,9 +1144,9 @@ plt.xlabel("Iteration")
 plt.ylabel("Loss")
 plt.legend()
 
-{{< /highlight >}}
+```
 
-{{< highlight python >}}
+```python {linenos=true}
 accuracies = np.array(accuracies)
 
 # Plot Discriminator accuracy
@@ -1183,4 +1161,4 @@ plt.xlabel("Iteration")
 plt.ylabel("Accuracy (%)")
 plt.legend()
 
-{{< /highlight >}}
+```
