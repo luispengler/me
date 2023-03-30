@@ -111,8 +111,18 @@ math: true
 > Jamais, na História da Ciência, um sistema de pensamento leigo teve tamanha longevidade. Questiona-se, frequentemente, se um único homem seria capaz de produzir tão vasto e profundo conhecimento em áreas tão díspares como Lógica, Geometria, Astronomia, Mecânica, Botânica, Biologia, Medicina, Física, Estética, Moral e Filosofia. Hoje se acredita que "Aristóteles" seja, na verdade, uma instituição, por ele próprio fundada, mas constituída por vários de seus discípulos, reunidos no Liceu de Atenas.
 
 ## A Mecânica Aristotélica
+> Segundo Aristóteles, havia dois tipos distintos de movimento, os naturais, produzidos por causas internas, e os violentes, produzidos por causas externas que se opõem aos movimentos naturais. Os movimentos naturais, por sua vez, também eram de dois tipos: radiais descendentes ou ascendentes, para corpos terrestres e circular uniforme, para corpos celestes.
++ Também acreditava nos quatro elementos naturais de Demócrito, sendo estes fogo, ar, água e terra, mas que eles deveriam se deslocar verticalmemte obedecendo uma ordem. Logo, o mais pesado (terra) estaria embaixo, enquanto que o fogo por ser o mais leve estaria em cima.
+> Os corpos celestes seriam feitos de um quinto elemento, ou "quinta essência", possuindo um movimento natural distinto, qual seja, o movimento circular uniforme, pois, como seres imutáveis e perfeitos, deveriam seguir trajetórias igualmente perfeitas (os gregos, sem exceções, idolatravam o círculo).
++ Aristóteles não se preocupava em saber o **por que** um corpo se move, mas sim **para que** e a resposta era simples: para ocupar o seu lugar natural no universo.
+> O repouso no lugar natural é o estado final de todos os corpos terrestres e para deslocar-se um corpo, será sempre necessária uma ação violenta
+> Na mecânica aristotélica, um corpo só pode ter um único movimento de cada vez, de forma que um projétil que seja arremessado obliquamente terá uma trajetória retilínea ascendente até que a ação inicial se esgote, quando em seguida o corpo cairá verticalmente.
++ O italiano Tartaglia, em 1551, previu trajetórias curvas para uma bola de canhão arremessada obliquamente, o que violava as leis aristotélicas de movimentos violentes e naturais que se sucedem independentemente e sem superposições. Só os astros poderiam descrever curvas contínuas.
++ Outra ideia aristotélica é de que corpos mais pesados caiam mais rápido porque tinham mais urgência em atingir seu lugar natural
++ Percebe-se o quão intuitiva eram as ideias da mecânica de Aristóteles, bem mais que as de Newton, e foram necessários 20 séculos para refutá-las.
 
 ## Modelo Geocêntrico e Geostático de Ptolomeu
+
 
 ## Arquimedes e o Princípio da Hidrostática e da Alavanca
 

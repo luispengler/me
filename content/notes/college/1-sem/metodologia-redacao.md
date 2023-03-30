@@ -42,3 +42,24 @@ Então, cabe ao cientista encontrar conhecimentos novos, incorporá-los à rede 
 + Manuscripto antes de ser aprovado, depois vira paper
 + Avaliação da qualidade e quantidade de pesquisa é importante, mas a quantidade de citações é mais ainda
 + Um artigo equivale a uma ideia
+ 
+# Resumo Livro (prancha 10 - 13)
++ Os autores devem se responsabilizar pela construção intelectual das conclusões
+> O autor de um artigo deve dominar os elementos básicoos que compõem o discurso expresso no texto
+> Se o trabalho necessita diferentes profissionais (por ex., antropólogo, astrônomo e biólogo), cada autor deverá ajudar a construir e entender por que as conclusões são válidas e conhecer elementos-chave de cada uma dessas áreas, mesmo que não conheça seus pormenores
++ O livro aprensenta na prancha 13 um resumo em tabela do reconhecimento máximo relacionado a algumas atividade dentro de um artigo. Abaixo, há uma copia da tabela do livro
+
+| Atividade | Reconhecimento Máximo |
+| --------- | --------------------- |
+| Incentivou, rezou, torceu e construiu um dos equipamentos | **Agradecimento** |
+| Emprestou equipamento | **Agradecimento** |
+| Corrigiu a redação do manuscrito | **Agradecimento** |
+| Coletou todos os dados | **Colaborador** |
+| Coletou, analisou e concluiu os dados de um estudo; não viu os outros | **Colaborador** |
+| Fez as análises estatísticas | **Colaborador** |
+| Responsabiliza-se por tudo o que há no estudo | **Autor** |
+> **Autores**: se responsabilizam por tudo do artigo, send os arquitetos da construção da proposta de estudo e das principais conclusões; são aptos a defender a essência do estudo, mesmo que não conheçam detalhes técnicos de um ou outro fragmento mais restrito
+
+> **Colaboradores**: se responsabilizam por alguma(s) parte(s) mais restritas(s) do estudo
+
+> **Agradecimento**: a todos que prestaram alguma ajuda, mas não se responsabilizam por nada do estudo
