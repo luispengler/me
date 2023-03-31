@@ -222,3 +222,43 @@ $$\frac{a_{1}}{b_{1}} = \frac{a_{2}}{b_{2}}$$
 $$a_{1}\cdot b_{1} = a_{2}\cdot b_{2}$$
 Ou:
 $$\frac{a_{1}}{b_{2}} = \frac{a_{2}}{b_{1}}$$
+
+# Conjuntos
+## Conceitos primitivos
++ Conjunto, elementos de um conjunto, relação de pertinência
+## Relações de ordem (parcial)
+1. $A \subseteq A$ (reflexiva)
+2. $A \subseteq B$ e $B \subseteq A$ então $\rightarrow A = B$ (antissimétrica)
+3. $A \subseteq B$ e $B \subseteq C$ então $A \subseteq C$ (transitivo)
+
++ Dado conjunto A, $\wp (A) = {B  B \subseteq A}$. Ex:
+$$A = {1, 2, 3}$$
+$$P (A) = {\varnothing}, {1}, {2}, {3}, {1,2}, {1,3}, {2,3}, {1,2,3}$$
+
++ Se A tiver um número finito de elementos n, o número de elementos de P(A) é $2^n$
+$$n = n(A)$$
+$$n (p(A)) = 2^n$$
+
++ $A, B \subseteq U$
++ $A \cup B = {x / x \in A ou x \in B}$ -> União
++ $A \cap B = {x / x \in A e x \in B}$ -> Intersecção
++ $A \backslash B = A - B {x / x \in A e x \notin B}$ -> Diferença
++ $A^c = {x | x \notin A}$ Complementar de A
+
++ Quando $A \cap B = \varnothing$, dizemos que A e B são disjuntos. Propriedades
+1. $A \subseteq B \rightarrow A \cup B = B$
+2. $A \subseteq B \rightarrow A \cap B = A$
+3. $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$
+4. $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$
+
+### Exercícios
++ Faça o 1, 2 e 4 acima, como o 3 demonstrao abaixo
++ Seja $x \in A \cap (B \cup C$. Então $x \in A$ e $x \in B \cup C$
++ Então $x \in A$ e $x \in B$ ou $x \in A$ e $x \in C$, logo $x \in (A \cap B) \cup (A \cap C)$
++ Agora faremos o contrário. Seja $x \in (A \cap B) \cup (A \cap C)$
++ $x \in A \cap B$ significa $x \in A e x \in B$, mesma coisa para $x \in A \cap C$
+$$x \in A$$ e $$[x \in B ou x \in C]$$
+$$x \in A$$ e $$[x \in B \cup C]$$
+$$x \in A \cap (B \cup C)]$$
+
+Sejam A, B conjuntos finitos, ou seja, A e B possuem um número finito de elementos. (caderno)
