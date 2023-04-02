@@ -1,5 +1,5 @@
 ---
-title: "Practice: Understanding GANs"
+title: "Practice: Understanding GANs With MNIST Dataset"
 date: 2023-03-15T23:38:34-04:00
 draft: false
 showToc: true
@@ -12,7 +12,7 @@ If you are new to the MNIST dataset, I can sum it up saying it is a dataset cont
 
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/example-mnist.jpg?raw=true)
 
-Our GAN model will be used for creating images that ressamble those from the MNIST dataset. Which in turn means that by the end of this practice we will have created a GAN that can write down some numbers :)
+Our GAN model will be used for creating images that ressamble those from the MNIST dataset, which in turn means that by the end of this practice we will have created a GAN that can write down some numbers :)
 
 ## Explaining the model
 
@@ -24,11 +24,11 @@ The Discriminator's goal is to be able to tell if a given input is deemed real r
 
 The Generator's goal is to create images that will fool the Discriminator by the latter saying the image has a high probability of being real.
 
-In the training process, we only update the weights of one of the models. If we are training the Discriminator, we will not touch on the settings of our Generator network. The same is valid for the Generator. In more details that's the training process:
+In the training process, we only update the weights and biases of one of the models. If we are training the Discriminator, we will not touch on the settings of our Generator network. The same is valid for the Generator. In more details that's the training process:
 
-The Discriminator takes examples of images from a real dataset (X), and from a fake dataset (X*) that we are generating. Then it computes how much it has mistaken the classifications and updates its weights to minimize what we call loss. Here, the Generator remains still.
+The Discriminator takes examples of images from a real dataset (X), and from a fake dataset (X*) that we are generating. Then it computes how much it has mistaken the classifications, which is something we call the Discriminator's loss, and updates its own weights and biases so that next time it has a smaller loss value (minimizing its own loss). In this part the Generator remains unaltered.
 
-The Generator takes input from a random noise source (z), and it produces a fake image as output (X*). Then it computes how much the Discriminator has mistaken the classification of the fake images, and updates its weights to maximize the loss. Here, the Discriminator remains still.
+The Generator takes input from a random noise source (z), and it produces a fake image as output (X*). Then it computes how much the Discriminator has mistaken the classification of the fake images, and updates its weights and biases to maximize the Discriminator's loss. This time, the Discriminator remains unaltered.
 
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/gan-layout.png?raw=true)
 Above you can see the GAN structure we will be creating, which is the summary of what I just described. It is a very general GAN model, but it will be sufficient for generating an understanding of this kind of machine learning framework.
@@ -83,7 +83,7 @@ plt.imshow(X_train[0], cmap='gray'
 ```
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0].png?raw=true)
 
-Now that you understood we are working with 28x28 images, time to define the output dimensions to our generator/input dimensions to our discriminator. That is saying they will be working with 28x28 images. 
+Now that you understood we are working with 28x28 images, it is time to define the output dimensions to our generator/input dimensions to our discriminator. That is saying they will be working with 28x28 images. 
 
 Notice we are also defining channels below. It is equal to one because we want to work with only one channel of color. If we wanted RGB (Red, Green, Blue), we would define channels equal to 3.
 ```python {linenos=true}
@@ -103,7 +103,7 @@ z_dim = 100
 
 ### Generator
 #### Short explanation
-Now let's build the generator. In the `Fully connected layer` part, it takes in the noise vector of size 100 we defined earlier, and connects it to 128 units in our first neural network layer. Then it gets connected to our first and only hidden layer, which is using a `Leaky ReLU activation` function. 
+Let's break down the code for our Generator ([you can find it some paragraphs below](#code)). In the `Fully connected layer` part, it takes in the noise vector of size 100 we defined earlier, and connects it to 128 units in our first neural network layer. Then it gets connected to our first and only hidden layer, which is using a `Leaky ReLU activation` function. 
 
 An activation function is a function that will put our values in a defined range. The Leaky ReLU doesn't limit positive numbers, meaning if we put in 16 as a number it wouldn't do anything to it and would still print out 16. However, for negative numbers it would make them bigger (that is, make them approach zero), in an order of 100 times. The following image may better clarify what Leaky ReLU does, but if you still didn't understand it, just think of it as a special layer in our neural network that prevents gradients from dying out during training, improving the quality of our Generator.
 
@@ -184,7 +184,7 @@ print(X_train[0])
     0   0   0   0   0   0   0   0   0   0]]
 {{< /highlight >}}
 
-We can almost see the number five being formed by the numbers that were not zero... These numbers are in grayscale (0 to 255 range), and when used `cmap='gray'` in matplotlib, it will show a black and white image like the one we got before. Now you understand that changing the range of the pixel values, changes the range of the numbers that make up an image (tanh would transform 0 to 255, to -1 to 1). We will see more of this in the [training subsection](#training).
+We can almost see the number five being formed by the combination of the numbers... These numbers are in grayscale (0 to 255 range), and when used `cmap='gray'` in matplotlib, it will show a black and white image like the one we got before. Now you understand that changing the range of the pixel values, changes the range of the numbers that make up an image (tanh would transform 0 to 255, to -1 to 1). We will see more of this in the [training subsection](#training).
 
 Now the real-last layer (`Reshape`) of our neural network simply reshapes the images which are in 784 by 1 to our normal size images: 28 by 28. That is, before getting into this last layer, we had some sort of array in the dimensions 784x1. Watch out for the difference:
 
@@ -208,7 +208,7 @@ The reshape layer takes the (784, 1) array and makes it a (28, 28) array that yo
 
 #### Code
 
-Let us finally get into the code for creating this Generator
+Let us finally get into the code for creating this Generator.
 
 ```python {linenos=true}
 from keras.models import Sequential
@@ -240,7 +240,7 @@ def build_generator(img_shape, z_dim):
 
 You may notice the Discriminator and the Generator are very similar networks, however in most GANs implementations they often very greatly in both size and complexity. 
 
-The first layer (`Flatten`) takes in the images in the format of 28x28 and reshapes them to 784x1. Now you might ask me why we went through the small hassle of adding another layer in our GAN model for reshaping since our work would be "undone" when it got to the input of the discriminator. The reason we reshaped the output of the Generator network was for its images to blend in with the real images which are already in the 28x28 format, regardless of the Discriminator network taking in 784x1 images as input.
+The first layer (`Flatten`) takes in the images in the format of 28x28 and reshapes them to 784x1. Now you might ask me why we went through the small hassle of adding another layer in our GAN model for reshaping since our work would be "undone" when it got to the input of the discriminator. The reason we reshaped the output of the Generator network was for its images to blend in with the real images which are already in the 28x28 format, regardless of the Discriminator network taking in 784x1 images as input. However, you could in theory simply reshape the MNIST dataset images to 784x1, and not need to reshape the generated images to 28x28 (just leave it at 784x1 as well), then the real images and the fake ones would still blend in (just not in the 28x28 format).
 
 Then, the reshaped images will go into a `Fully connected layer` of 128 units. Then it gets connected to our first and only hidden layer that uses a `Leaky ReLU` activation function. This part is identical to the Generator network.
 
@@ -282,7 +282,7 @@ The `'accuracy'` metrics is the way the Discriminator, and later us, will know h
 
 The Generator is built taking as input `img_shape` and the `z_dim` arguments we defined earlier. Then, we only compile the Generator together with the Discriminator in the `gan` argument. For doing this, we first neet to set `discriminator.trainable` to `false`. 
 
-To clarify what I just stated, notice how below we *built* and *compiled* the Discriminator alone. This means that when we use the Discriminator and train it, it will take care of its own weights without interfering with the Generator network. Since it is alone, it can't interfere with anyone else. In turn, the generator is *built* alone, but it is *compiled* only when it is together with the Discriminator. It is only possible to train the Generator without tweaking the Discriminator weights by mistake if we set `discriminator.trainable` to false.
+To clarify what I just stated, notice how below we **built** and **compiled** the Discriminator alone. This means that when we use the Discriminator and train it, it will take care of its own weights without interfering with the Generator network. Since it is alone, it can't interfere with anyone else. In turn, the generator is **built** alone, but it is **compiled** only when it is together with the Discriminator. It is only possible to train the Generator without tweaking the Discriminator weights by mistake if we set `discriminator.trainable` to false.
 
 Lastly, we save a file called `generator_model.h5` containing the Generator network model. After trained, we can even use this file in other projects with the same abilities our generative model will have.
 
@@ -404,7 +404,7 @@ print(X_train[0])
     0   0   0   0   0   0   0   0   0   0]]
 {{< /highlight >}}
 
-The issue is that the real images are very distinguishable from the fake ones, since we used `tanh` activation function in the Generator code. Therefore the generator is working with images that go from -1 to 1. The fake images are in this -1 to 1 range, while the real ones are in 0 to 255. Very easy to spot their differences like this. Let us fix this by setting the range of values of the real images to *also* be in -1 to 1.
+The issue is that the real images are very distinguishable from the fake ones, since we used `tanh` activation function in the Generator, it is working with images that go from -1 to 1. That means that the fake images are in this -1 to 1 range, while the real ones are in 0 to 255. Very easy to spot their differences like this. Let us fix this by setting the range of values of the real images to **also** be in -1 to 1.
 
 ```python {linenos=True}
 X_train = X_train / 127.5 - 1.0
@@ -686,16 +686,83 @@ plt.imshow(X_train[0], cmap='gray')
 ```
 ![A reranged 5](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/x_train[0]_ranged.png?raw=true)
 
-Next with `real = np.ones...` and `fake = np.zeros...` we are creating a 1-dimensional numpy array that will be our labels for real and fake images. As the code suggest, we are encoding real as 1 and fake as 0.
+Next with `real = np.ones((batch_size, 1))` and `fake = np.zeros((batch_size, 1))` we are creating a 1-dimensional numpy array that will be our labels for real and fake images. As the code suggest, we are encoding real as 1 and fake as 0.
 
 #### Training for loop
 Our training for loop is very important. It defines the steps that will be followed during training.
 
-First, we are training the discriminator. We get a random batch of real images. Then we get a random batch of fake images produced by our generator. Now the last step in the discriminator training is to make predictions of what classes those two batches belong to, and give it the right answer so it can calculate how much off the predictions are and update its weights.
+First, we are training the discriminator. We get a random batch of real images. The code line `idx = np.random.randint(0, X_train.shape[0], batch_size)` will give an array of random numbers any time it is read. Mine for once was the below, which you can see by running `idx`.
 
-For the generator training, we ask it to create fake images that we will label as real, and see what the discriminator will think about this lying act of ours. Lastly, we hold the discriminator weights still and update the generator's.
+```python {linenos=true}
+idx
+```
+{{< highlight plaintext >}}
+array([25920, 26064, 33671, 32605,  6425, 59315, 30511, 55435, 26916,
+       19323, 18101, 23335,  9861, 31422, 28701, 48697, 17212, 47408,
+       51358,  6759, 58100, 26888, 15078, 18564, 21526, 30725, 24117,
+       32581, 53086,  6893, 15341,  6371, 41043, 21601, 42828, 28187,
+        1138, 52940, 18744, 54318, 46527, 42070, 34308, 32423, 45819,
+       26281,  5715, 25884, 12345,  8417, 46373, 40419, 44005, 25802,
+       52323, 36148, 34411, 59891, 48229,  4545, 54343, 51594, 39092,
+       53981,  7812, 58982, 32166, 14466, 11552, 54139,  8675, 11207,
+       52915, 13795, 38792,  7056, 33569, 36693, 16911, 57138, 15059,
+       46433, 41947, 21047, 52353, 58981, 57461, 29683, 35477, 42228,
+       47068, 56887, 43435, 15456, 24735, 53753, 29363, 31095, 54618,
+       40214, 54801, 40577, 56503, 31241,  8541, 10678, 58001, 43211,
+       13343, 22059, 28042, 15490, 28817, 50619, 42503, 22699, 11541,
+       21757, 22338, 15620, 53041, 35000, 11242,  9518, 50624, 55582,
+       47070,  1390])
+{{< /highlight >}}
 
-The last step in the Training code is not necessary for training the GANs, but it will be useful for our understanding of them. We will save their progress for later plotting in a graph. We will also take "snapshots" of what the generator is producing so we can see how well it can handwrite...
+So that we can get a random batch of real images, we just assign each one of the numbers in the array you saw above to an index of an image present in the MNIST dataset. This is done by running `imgs = X_train[idx]`
+
+Similarly, by running `z = np.random.normal(0, 1, (batch_size, 100))` we get random values for the input of the generator. This is our random noise sourze (z) commented earlier. It generates 100 random numbers in the range from 0 to 1. All of this is necessary so we get randomness in the number generation. No two generated numbers will be identical because everytime `z = np.random.normal(0, 1, (batch_size, 100))` is running, we get different values in the array. You can verify what these values are by running the below.
+```python {linenos=true}
+z
+```
+{{< highlight plaintext >}}
+array([[-1.91992421e-01, -1.08401678e+00, -1.19431854e-03, ...,
+         3.47946637e-01,  7.05697133e-02,  1.31822535e+00],
+       [ 8.09580777e-01, -8.33102821e-01,  8.19856365e-01, ...,
+        -2.71591923e-01, -4.70752500e-01, -6.09906282e-01],
+       [ 4.79368301e-01, -6.22733779e-01,  6.72358083e-01, ...,
+         3.19932660e-01, -1.12344273e+00, -7.53240611e-01],
+       ...,
+       [ 2.20391394e-01, -1.89958687e-01,  2.17267157e-01, ...,
+         8.10365364e-01, -6.03790376e-01,  1.17673864e+00],
+       [-1.07111602e+00, -1.99597750e-01, -3.94322883e-01, ...,
+         7.82795777e-01,  1.43982877e+00, -1.33052956e+00],
+       [ 2.26731520e-01, -3.90780048e-01, -1.55340947e-01, ...,
+        -5.19932543e-02,  5.72968732e-01, -2.68468205e+00]])
+{{< /highlight >}}
+
+We then feed those random numbers in the array z to our generator, which will from them generate new images and save them in an array called `gen_imgs`. The code for that is `gen_imgs = generator.predict(z)` and after ran you can verify some properties
+```python {linenos=true}
+gen_imgs = generator.predict(z)
+```
+{{< highlight plaintext >}}
+4/4 [==============================] - 0s 3ms/step
+{{< /highlight >}}
+```python {linenos=true}
+gen_imgs.shape
+```
+{{< highlight plaintext >}}
+(128, 28, 28, 1)
+{{< /highlight >}}
+Above we can see the generated images are in the format of 28x28, have 1 channel and there are 128 of them.
+
+Next we get the two batches we randomly generated (that is the random sampling we did with MNSIT dataset and the ones created by the generator through inputing random numbers), and ask the discriminator to make predictions on their classifications, calculating how much it has mistaken and updating its weights and biases to correct that.
+```python {linenos=true}
+        d_loss_real = discriminator.train_on_batch(imgs, real)
+        d_loss_fake = discriminator.train_on_batch(gen_imgs, fake)
+        d_loss, accuracy = 0.5 * np.add(d_loss_real, d_loss_fake)
+```
+
+For the generator training part, not much changes. Except now we don't care about random sampling through the MNIST dataset, neither updating the discriminator's weights and biases, afterall this is the generator training!
+
+We get another random array of numbers (z) by running `z = np.random.normal(0, 1, (batch_size, 100))` and ask the generator to give us images by running `gen_imgs = generator.predict(z)`. All of this we saw in the discriminator training explanation, so I won't go into details. The difference now is that we are using `g_loss = gan.train_on_batch(z, real)` to feed images into the compiled gan model, that has both the discriminator and generator. However, it is with the generator we are talking with because we want it to give us predictions on what could those images be (real or fake). Notice the word `real` at the end of that line of code. We are calling our images real so that the discriminator can be fooled into thinking these are real images.
+
+The last step in the Training code is not necessary for training the GANs, but it will be useful for our understanding of them. We will save their progress for later plotting in a graph. We will also take "snapshots" of what the generator is producing so we can see how well it can handwrite... The frequency with which the snapshots are generated is set by the variable `sample_interval` which we define in the code from the [next session](#actually-training--inspecting-output).
 
 #### Code
 ```python {linenos=True}

@@ -10,7 +10,7 @@ math: true
 + Note que essa atividade é um pouco pessoal. O que eu escrevi aqui foi mais usado para consulta na aula, já que a proposta era discutir essas perguntas com a sala
 1. Existe apenas uma definição de Ciência? A Física e a Química são usadas como exemplo de “Ciência Dura”. Explique.
 
-Não existe apenas uma definição de Ciência. Hoje em dia, o termo duro é usado para se referir a campos de estudo na base do rigor metodológico percebido, exatidão e objetividade. Há algumas variantes de definição que citam outros fatores a serem considerados para ser ciência dura.
+Não existe apenas uma definição de Ciência. Hoje em dia, o termo duro é usado para se referir a campos de estudo na base do rigor metodológico percebido, exatidão e objetividade. No entanto, há algumas variantes de definição que citam outros fatores a serem considerados para ser ciência dura.
 
 2. Seja a frase: “a Ciência diz que Ivermectina não funciona para a Covid”. Quem é a Ciência? Qual o endereço da Ciência? Quais são as pessoas que podem fazer afirmações sobre determinado assunto em nome da Ciência?
 
@@ -28,7 +28,6 @@ A Ciência era para ser o esforço relacionado a entender porque certo medicamen
 
 Discute e explica a coleção de dados e métodos de análise que o autor utilizou na pesquisa. Explica o que você fez e como fez. É importante para a reproducibilidade de experimentos, que são necessários para testar hipoteses.
 
-
 5. Quando alguém diz que Astrologia ou Psicologia Quântica é Ciência, qual definição de Ciência esta pessoa está usando? A pessoa leiga que houve esta afirmação, em geral está pensando em qual tipo de definição de Ciência?
 
 Sobre astrologia. Encontei esse blog defendendo porque a [Astrologia](https://thoughtcatalog.com/nikki-halsted/2018/12/heres-why-astrology-is-a-real-science/) é uma ciência. A autora diz que astrologia passa os critérios para ser considerado uma ciência social. "O Método científico aplicado a pesquisa em ciências sociais é exatamente como seria aplicado na astrologia". Ela defende esse argumento dizendo que estudam dados qualitativos e quantitativos para melhor entender certos pressupostos sobre a população e que astrólogos seguem esse método, fazendo muitas leituras para indivíduos, observando muitas características e as frequências que elas se repetem. Eles juntam informação, formulam hipoteses e subtem seus dados a uma organização nacional estatística. Depois, testam suas hipoteses em uma outra população.
@@ -42,7 +41,7 @@ Não. O segundo texto vai muito bem contra essa afirmação, dizendo que tudo qu
 
 7. Qual é o objeto de estudo da Física? Qual a linguagem que a Física usa? O que é mais importante para a Física: experimento ou teoria ?
 
-É a natureza física, do universo, de tudo que nos cerca. A matemática é usada para expressar conceitos e teorias físicas ([Fonte](https://cienciahoje.org.br/coluna/a-linguagem-da-fisica/)), podendo ser considerada sua linguagem. Diria que é de igual importância
+É a natureza física, do universo, de tudo que nos cerca. A matemática é usada para expressar conceitos e teorias físicas ([Fonte](https://cienciahoje.org.br/coluna/a-linguagem-da-fisica/)), podendo ser considerada sua linguagem.
 
 8. O que é um dogma ? A Física tem dogmas ? A Matemática tem dogmas ? Explique.
 
