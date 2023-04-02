@@ -860,11 +860,24 @@ def sample_images(generator, image_grid_rows=4, image_grid_columns=4):
 ```
 
 
+#### Extra explanation
+I am adding this section to clarify some things and hopefully answer my mentor's inquiries.
+
+He noticed a weirdness in training with the MNIST dataset. There are 10 numbers, ranging from 0 to 9, which means they all look different! And each step of training we are not defining the numbers we are using that time, so we are not getting our generator to be better at generating 1s or 6s. What we are in fact doing is modeling random noise (from our z) with the statistical properties of real data. These properties are the distribution of the numbers that make up the real images, and things like pixel values, and the spatial correlations between neighboring pixels.
+
+That means we are not training our GAN to create any number better specifically, but for all of them in some way to end up looking more real. The specificity in our GAN approach would have made the generator network create a one number better than all the others, our eyes passing images from the generated number as real but reproving all the other number generation attempts (why does this 0 look like a 5???)
+
+If we wanted better looking 0s, 1s, 2s, 3s... so that they don't overall look real, but each one of them looked super real we would have to go with another GAN approach known as conditional GAN (cGAN).
+
+Another thing he noticed, and hopefully you notice it too is that the snapshot images (which you can see in the [next session](#actually-training--inspecting-output)) are also random. Look at the last two 4x4 grids. If you go in the same position in the two images you will notice the GAN attempted to create something different in there. It is not the same number.
+
+![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/ex1.png?raw=true)
+
 ### Actually training + Inspecting Output
 #### Short explanation
-We covered pretty much every part of the code. Now we are just defining the hyperparameters. While machine learning models are usually very sensible to hyperparameters, our GAN model is simple and therefore is less sensible to have bad hyperparameters. Of course, your images will become pretty bad if you set bad hyperparameters, but it is not the end of the world. The number of `iterations` defines how many times we will go through the training loop we just saw a code block ago. It took me one hour to run it on colab, it might take you a different time running somewhere else. An ideal iteration number for this GAN would be 100,000. However, I don't want to wait 5h just to get images for a practice tutorial... Maybe you don't want to wait that much time to learn the content either.
+We covered pretty much every part of the code. Now we are just defining the hyperparameters. While machine learning models are usually very sensible to them, our GAN model is simple and therefore is less sensible to have bad hyperparameters. Of course, your images will become pretty bad if you set them badly, but it is not the end of the world. The number of `iterations` defines how many times we will go through the training loop we just saw a code block ago. It took me one hour to run it on colab, it might take you a different time running somewhere else. An ideal iteration number for this GAN would be 100,000. However, I don't want to wait 5h just to get images for a practice tutorial... Maybe you don't want to wait that much time to learn the content either.
 
-Batch size will tell our training loop how much images to get for the Discriminator to predict at. And lastly `sample_interval` defines after how many iterations to print us a 4x4 grid with the progress of the Generator network.
+Batch size will tell our training loop how much images to get for the Discriminator to predict at. And lastly `sample_interval` defines after how many iterations to print us a 4x4 grid with the progress of the Generator network. That is our "snapshot" commented briefly in the last session.
 
 Also, if you get a warning running this part of the code as `Discrepancy between trainable weights and collected trainable`, it is just Keras complaining we held the Discriminator's parameters constant while training the Generator.
 
