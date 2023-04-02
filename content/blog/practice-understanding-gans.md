@@ -873,6 +873,8 @@ Another thing he noticed, and hopefully you notice it too is that the snapshot i
 
 ![MNIST Dataset](https://github.com/luispengler/me/blob/main/static/blog/practice-understanding-gans/ex1.png?raw=true)
 
+This can be explained because of our noise source z that adds randomness in the number generation. Even though I like this answer, if we look into the [tensorflow tutorial on Deep Convolutional Generative Adversarial Network](https://www.tensorflow.org/tutorials/generative/dcgan), you can see they created a GIF of those images we are plotting. How could they do that if the numbers are in different positions? Maybe the randomness from z is not a good answer afterall.
+
 ### Actually training + Inspecting Output
 #### Short explanation
 We covered pretty much every part of the code. Now we are just defining the hyperparameters. While machine learning models are usually very sensible to them, our GAN model is simple and therefore is less sensible to have bad hyperparameters. Of course, your images will become pretty bad if you set them badly, but it is not the end of the world. The number of `iterations` defines how many times we will go through the training loop we just saw a code block ago. It took me one hour to run it on colab, it might take you a different time running somewhere else. An ideal iteration number for this GAN would be 100,000. However, I don't want to wait 5h just to get images for a practice tutorial... Maybe you don't want to wait that much time to learn the content either.
