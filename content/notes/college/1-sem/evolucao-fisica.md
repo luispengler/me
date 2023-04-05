@@ -117,19 +117,73 @@ math: true
 + Aristóteles não se preocupava em saber o **por que** um corpo se move, mas sim **para que** e a resposta era simples: para ocupar o seu lugar natural no universo.
 > O repouso no lugar natural é o estado final de todos os corpos terrestres e para deslocar-se um corpo, será sempre necessária uma ação violenta
 > Na mecânica aristotélica, um corpo só pode ter um único movimento de cada vez, de forma que um projétil que seja arremessado obliquamente terá uma trajetória retilínea ascendente até que a ação inicial se esgote, quando em seguida o corpo cairá verticalmente.
-+ O italiano Tartaglia, em 1551, previu trajetórias curvas para uma bola de canhão arremessada obliquamente, o que violava as leis aristotélicas de movimentos violentes e naturais que se sucedem independentemente e sem superposições. Só os astros poderiam descrever curvas contínuas.
++ O italiano Tartaglia, em 1551, previu trajetórias curvas para uma bola de canhão arremessada obliquamente, o que violava as leis aristotélicas de movimentos violentos e naturais que se sucedem independentemente e sem superposições. Só os astros poderiam descrever curvas contínuas.
 + Outra ideia aristotélica é de que corpos mais pesados caiam mais rápido porque tinham mais urgência em atingir seu lugar natural
 + Percebe-se o quão intuitiva eram as ideias da mecânica de Aristóteles, bem mais que as de Newton, e foram necessários 20 séculos para refutá-las.
 
 ## Modelo Geocêntrico e Geostático de Ptolomeu
-
++ A partir da mecânica de Aristóteles, foi possível contruir os modelos cosmológicos geocêntrico e geoestático
++ Se um corpo pesado busca com urgência seu lugar natural, então podemos supor que este ponto seja o centro do universo e não um ponto aleatório do espaço sideral
++ Acreditava-se que a Terra não se movia porque ao jogarmos uma pedra verticalmente, ela voltaria sempre para as nossas mãos. Se ela estivesse se movendo, a pedra cairia ao lado das nossas mãos e para resolver isso (já que não vemos assim na prática) deveria haver um movimento violento que colocasse ela na vertical, mas aí ela não estaria caindo porque só pode um movimento por vez... Essa complicação toda é resolvida se deixarmos a Terra parada
++ Muitos livros-textos e peças teatrais apresentam Aristóteles como um cidadão grego, despótico e arrogante, cujas ideias absurdas provocaram a inquisição com todos os seus males e perseguições. No entanto, eles esquecem que suas ideias desepareceram durante o primeiro milênio da era cristã e só voltaram graças aos árabes e judeus na Espanha, fazendo a obra chegar a Tomás de Aquino que incorporou suas ideias ao corpo dogmático do Cristianismo mediaval, portanto verdades incontestáveis
 
 ## Arquimedes e o Princípio da Hidrostática e da Alavanca
++ Arquimedes nasceu em Siracusa (hoje Sicília, Itália) por volta de 287 a.C e ficou famoso por muitos fatos curiosos, com veracidades duvidosas
++ A história da coroa de ouro não podemos afirmar se foi verdade ou não
++ Ficou conhecido pela frase "Deem-me um ponto de apoio e eu erguerei a Terra"
++ Ajudou na orientação técnica da defesa de sua cidade contra os romanos, resistindo a eles por três anos até que foram capturados. O general Marcelo poupou a vida do cientista, mas morreu aos 75 anos por um soldado em um saque da cidade
++ Sua maior contribuição foi ter derrubado a atitude platônica de que o filósofo não se rebaixa a lidar com as aparências do mundo transitório das coisas. Arquimedes pode ser considerado um precusor da Hidrostática e do princípio das máquinas simples
 
 ## Eratóstenes e a Determinação do Raio da Terra
++ Eratóstenes que nasceu em 276 a.C na Alexandria, também conhecido por ser o inventor do crivo de Eratóstenes
++ Foi um dos primeiros matemáticos a determinar o raio da Terra com uma precisão boa pra época e sendo muito criativo nessa tarefa (não vou descrever o método aqui)
++ Achou o raio sendo igual a 7300 km, quando o valor de hoje é 6400 km. O método era puramente geométrico, mas já tinha os germes da ciência moderna pois todas as grandezas envolvidas foram determinadas experimentalmente
 
 ## Ptolomeu e o Sistema Geocêntrico
++ Claudius Ptolomeu nasceu provavelmente no Alto Egito no ano 110 d.C
++ Ele apresentou uma descrição matemática detalhada dos movimentos do Sol e da Lua, sendo capaz de prever, precisamente, as datas de futuros eclipses tanto solares quanto lunares
++ Conseguiu atribuir aos planetas órbitas elípticas, tendo a Terra como foco, sem deixar de usar o círculo como figura básica e era totalmente coerente com a Mecânica de Aristóteles
 
 # Sexta aula
 + Livro: Outliers: The Story of Success
 + Éter? (significado)
+
+## A revolução copernicana: surgimento de uma nova Ciência
++ Nikolaj Koppernigk (Nicolaus Copernicus) nasceu em 1473 em Thora (Thorn), Polônia
++ Nicolau estava muito insatisfeito com a invenção e o uso do equante e do movimento excêntrico, pois para ele isso introduzia um movimento desigual que entrava em conflito de que tudo deveria girar em torno do centro do universo a uma velocidade invariável
++ Ele supõe possível um sistema onde o sol fique no centro e os planetas girem em torno e tenta mostrar que isso era mais verdadeiro que o sistema geocêntrico. Para isso ele inicialmente mostra que era mais simples que o model de Ptolomeu e ainda tão precisa quanto, utilizando menos circulos
++ No entanto, copérnico precisava mostrar não só que a visão era útil e adequada, mas que as leis da física eram só compatíveis com essa teoria, coisa que só seria feito por Galileu e Newton posteriormente
++ Copérnico virou o maior astrônomo da sua época, mas seu modelo era utilizado apenas como instrumento matemático, sem ter sido aceitado como verdadeiro
+> Copérnico não resolveu os três problemas básicos do heliocentrismo: mostrar que a Terra realmente se move, desenvolver uma nova Mecânica não aristotélica, estabelecer uma teoria da gravidade.
++ Ainda com lacunas teóricas, este homem produziu uma das grandes revoluções da história da ciência
++ Nesta época, conseguiu virar a ciência de cabeça pra baixo, e tirou o homem do centro das coisas
+
+
+# Sétima aula
++ Fomos até Cartesius
++ Fazer mapa mental até item 9 (capítulo 1) - 19/4
+
+## Kepler: Novas Descobertas e o Antigo Ideal Pitagórico
++ Johannes Kepler nasceu em 1571, num vilarejo perto da Floresta Negra
+> A tragédia, a doença e o sofrimento acompanharam Kepler por toda a sua vida 
++ Fez o mapa astrológico de toda sua família e culpou as estrelas por eles serem doentes
++ Kepler também sofria de uma doença nas mãos que não permitia ela cicatrizar
++ Enquanto muitas pessoas sucumbiriam diante das dificuldades que Kepler teve, ele conseguia encontrar no seu trabalho o seu refúgio espiritual, se tornando até obsecado por ele
++ Kepler se tornou astrólogo quando jovem, seguindo a moda da época. Também amava muito a harmonia musical do cosmos, números inteiros e sólidos regulares como um pitagórico
++ Dando aula de Matemática e Astronomia na Escola Luterana de Graz que percebeu a conexão secreta entre a geometria pitagórica e o sistema copernicano... (O sistema de esferas inscritas e os cinco sólidos regulares)
+> O glorioso passado representado pelo *quadrivium* grego poderia, enfim, coexistir harmoniosamente com as novas e volucionárias idéias renascentistas
++ Os outros 3 planetas, que quebrariam a ideia dos cinco sólidos para cinco planetas, só foram descobertos muito tempo depois. Com o que havia, Kepler pode determinar o raio das trajetórias planetárias com apenas 5% de erro. Sempre acreditou no ideal platônico-pitagórico
++ No entanto, Kepler também tinha olhar para o futuro. Sabia que o **para que** da escolástica, deveria ser substituído pelo **por que** científico.
+> Kepler, como dissemos, refletia, como ninguém em sua época, o período de transição entre o novo **fazer** científico e o antigo **contemplar** escolástico
+### As leis de Kepler para o movimento dos planetas
++ Em 1598, Kepler é obrigado a deixar Graz, tendo que buscar outras condições de trabalho melhores. Aí então recebe o convite de Tycho Brahe, o maior astrônomo da época, de temperamento autoritário e habitos pouco comuns
++ O rabugente Kepler e o arrogante Tycho se tornaram inimigos inseparáveis no castelo de Benatek, pois Brahe tinha os melhores instrumentos e os mais completos dados astronômicos e Kepler tinha a genealidade que ninguém mais possuia
++ Brahe deixa Kepler analisar a trajetória de Marte, a mais complexa do sistema solar. Kepler diz que demoraria 8 dias para fazer a tarefa, mas acabou demorando 8 anos
++ No período da análise da trajetória de Marte, chega a buscar ajuda no modelo de Ptolomeu, mas descobre que o misterio se resolveria se considerasse a órbita de marte uma elípse e não um círculo, assim nasce sua primeira lei: "Todos os planetas do sistema solar executam trajetórias elípticas tendo o Sol em um dos focos."
+> Caira assim um dos mais antigos paradigmas da ciência grega: o círculo como figura perfeita, e quase sagrada, da qual derivam todos os movimentos conhecidos
++ Kepler acreditava que o calor emanado do sol era simbolicamente o Espírito Santo, que diminuiria com a distância.
+> Se as trajetórias dos planetas são elípticas uma conclusão lógica é que quando se aproximam do Sol, sofrem uma influência maior, adquirindo assim maiores velocidades
++ Assim, Kepler chega à sua segunda lei: "A linha que liga o Sol aos planetas varre áreas iguais em tempos iguais"
++ Para Kepler, o Sol não era apenas o centro matemático das elipses, mas também o centro espiritual e teológico do universo. Assim, deveria haver uma relação entre os períodos e as distâncias médias do planeta ao Sol. Nascia a terceira lei: "O quadrado dos períodos das órbitas dos planetas é proporcional ao cubo de suas distâncias médias ao Sol."
+### A nova Música das Esferas
++ 

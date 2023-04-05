@@ -10,7 +10,16 @@
       <link>https://luispengler.github.io/me/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
     </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 28 Mar 2023 09:29:39 -0400</lastBuildDate><atom:link href="https://luispengler.github.io/me/notes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Apr 2023 12:47:06 -0400</lastBuildDate><atom:link href="https://luispengler.github.io/me/notes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Intro to Deep Learning</title>
+      <link>https://luispengler.github.io/me/notes/courses/introtodeeplearning/</link>
+      <pubDate>Tue, 04 Apr 2023 12:47:06 -0400</pubDate>
+      
+      <guid>https://luispengler.github.io/me/notes/courses/introtodeeplearning/</guid>
+      <description>Why Deep Learning and Why Now? Not having a human do dauting tasks We have more data, hardware and software now The Perceptron It is a single neuron that takes input of Xn Activation Function Introduce non-linearity so that we can better understand the real world Output of the perceptron Three steps to get the output: Dot product, bias, and non-linearity Empirical Loss Same as loss function, or cost function -&amp;gt; we want to minimize it Gradient Descent Intialize weights randomly Loop until convergence (compute gradient, update weights) Return weights Difficulty in optmizing Learning rate can be tricky to set, because we can lose the global minima We can solve it by using adaptive learning rates Mini-batches Leads us to faster training and more accurate results Stochastic Gradient Descent Intialize weights randomly Loop until convergence (pick batch of B data points, compute gradient, update weights) Return weights Regularization Discorages our model to learn too complex functions, therefore avoiding overfitting One famous example is Dropout </description>
+    </item>
+    
     <item>
       <title>Seminários de Física</title>
       <link>https://luispengler.github.io/me/notes/college/1-sem/seminarios-fisica/</link>
